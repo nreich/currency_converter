@@ -13,7 +13,7 @@ describe "converting currencies" do
   end
 
   it "should display the conversion" do
-    conversion_value = currency_from.convert_to(currency_to, 1)
+    conversion_value = 0.50000
     expect(page).to have_selector "p#conversion_result", text: conversion_value
   end
 end

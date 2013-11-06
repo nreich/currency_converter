@@ -19,7 +19,8 @@
 
 <% if @converted_amount %> 
   <p id="conversion_result">
-    <%= @amount %> <%= @currency_from.name %> = <%= @converted_amount %>
+    <%= @amount %> <%= @currency_from.name %> =
+    <%= number_with_precision(@converted_amount, precision: 5) %>
     <%= @currency_to.name %>
   </p>
 <% end %>
