@@ -29,6 +29,12 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+end
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'database_cleaner', '<= 1.0.1'
