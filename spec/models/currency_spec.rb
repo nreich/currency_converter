@@ -5,6 +5,7 @@ describe Currency do
 
   it { should respond_to :name }
   it { should respond_to :per_us_dollar }
+  it { should respond_to :convert_to }
   it { should be_valid }
 
   describe "validations" do
@@ -29,6 +30,28 @@ describe Currency do
       end
     end
   end
+
+  describe "converting to another currency" do
+    let(:second_currency) { FactoryGirl.create(:currency, per_us_dollar: 5) }
+    before { currency.save }
+    context "given a valid amount" do
+      it "should return the right value" do
+        conversion = currency.convert_to(second_currency.id, 1)
+        expect(conversion).to be_within(0.01).of(0.5)
+      end
+    end
+    context "given an invalid quantity" do
+      it "should return 'nil' for negative numbers" do
+        conversion = currency.convert_to(second_currency.id, -10)
+        expect(conversion).to be_nil
+      end
+      it "should return 'nil' for non-number inputs" do
+        conversion = currency.convert_to(second_currency.id, "text")
+        expect(conversion).to be_nil
+      end
+    end
+  end
+
 end
 
 
